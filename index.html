@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #mapy {
+        height: 400px;
+        width: 100%;
+       }
+       #mapx {
+        height: 400px;
+        width: 100%;
+       }
+
+       #mapz {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <h3>Satellite Map</h3>
+    <div id="mapy"></div>
+    
+    <script>
+      function initMap(){
+        
+        /* get the current */
+
+        navigator.geolocation.getCurrentPosition(function(positionx) {
+        
+          /* assign position to variables */
+          var lat = positionx.coords.latitude;
+          var lng = positionx.coords.longitude;
+          
+          /* create variable to store lat and long */
+          var uluru = {lat: lat, lng: lng};
+
+          /* create object to store call back */
+
+          var mapy = new google.maps.Map(document.getElementById('mapy'), {
+            zoom: 40,
+            center: uluru,
+            mapTypeId : 'satellite'
+          });
+        
+          /* create market object and use the position from stored variable */
+
+          var marker = new google.maps.Marker({
+            position: uluru,
+            map: mapy
+          });
+      });
+      }
+
+      </script>
+
+      <h3>Roadmap</h3>
+      <div id="mapx"></div>
+
+      <script>  
+        function secMap() {
+          navigator.geolocation.getCurrentPosition(function(positionx) {
+        
+            /* assign position to variables */
+            var lat = positionx.coords.latitude;
+            var lng = positionx.coords.longitude;
+
+            var posx = {lat: lat, lng: lng};
+            var mapx = new google.maps.Map(document.getElementById('mapx'), {
+              zoom: 15,
+              center: posx,
+              mapTypeId : 'roadmap'  
+            });
+
+            var markerx = new google.maps.Marker({
+              position: posx,
+              map: mapx
+            });
+      });
+      }
+    </script>
+
+    <h3>Terrian</h3>
+    <div id="mapz"></div>
+
+      <script>  
+        function thdMap() {
+          navigator.geolocation.getCurrentPosition(function(positionx) {
+        
+            /* assign position to variables */
+            var lat = positionx.coords.latitude;
+            var lng = positionx.coords.longitude;
+
+            var posx = {lat: lat, lng: lng};
+            var mapz = new google.maps.Map(document.getElementById('mapz'), {
+              zoom: 15,
+              center: posx,
+              mapTypeId : 'terrain'  
+            });
+
+            var markerx = new google.maps.Marker({
+              position: posx,
+              map: mapz
+            });
+      });
+      }
+    </script>
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=APIKEY&callback=initMap">
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=APIKEY&callback=secMap">
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=APIKEY&callback=thdMap">
+    </script>
+  </body>
+</html>
